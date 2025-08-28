@@ -1,0 +1,43 @@
+Class Ticket
+    Attributes:
+        movieName
+        seatNumber
+        price
+        status (Booked/Cancelled)
+
+Class Theatre
+    Attributes:
+        movieSchedules
+        availableSeats
+        ticketsList
+    Method issueTicket(customer, movieName, seatNumber):
+        If seatNumber is available:
+            Create new Ticket(movieName, seatNumber, price, "Booked")
+            Add ticket to ticketsList
+            Remove seat from availableSeats
+            Return ticket
+        Else:
+            Print "Seat not available"
+    Method cancelTicket(ticket):
+        ticket.status = "Cancelled"
+        Add seatNumber back to availableSeats
+        Print "Ticket cancelled"
+
+Class Customer
+    Attributes:
+        name
+        bookedTickets
+    Method bookTicket(theatre, movieName, seatNumber):
+        ticket = theatre.issueTicket(this, movieName, seatNumber)
+        If ticket != null:
+            Add ticket to bookedTickets
+    Method cancelTicket(theatre, ticket):
+        theatre.cancelTicket(ticket)
+        Remove ticket from bookedTickets
+
+Main():
+    theatre = new Theatre(movies=["Avengers"], availableSeats=[A12, A13])
+    customer = new Customer("Ravi")
+
+    ticket1 = customer.bookTicket(theatre, "Avengers", "A12")
+    customer.cancelTicket(theatre, ticket1)

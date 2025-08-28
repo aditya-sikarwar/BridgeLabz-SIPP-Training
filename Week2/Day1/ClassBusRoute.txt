@@ -1,0 +1,34 @@
+Class Node
+    Attributes:
+        stopName
+        next
+
+Class BusRoute
+    Attribute:
+        head
+    Method insertAfter(existingStop, newStop):
+        Traverse list until existingStop found
+        Create new Node(newStop)
+        Insert it after existingStop
+    Method delete(stopName):
+        Traverse list
+        If stopName found:
+            Remove node by linking previous.next = current.next
+    Method search(stopName):
+        Traverse list
+        If stopName found → return true
+        Else return false
+    Method displayRoute():
+        Print all stop names in order
+
+Main():
+    route = new BusRoute()
+    route.insertAfter("Depot", "Main Street")
+    route.insertAfter("Main Street", "City Mall")
+    route.insertAfter("City Mall", "Hospital")
+    route.insertAfter("Hospital", "Airport")
+
+    route.insertAfter("City Mall", "University")   // insertion
+    route.delete("Hospital")                       // deletion
+
+    If route.search("Airport") → print "Airport is in the route"

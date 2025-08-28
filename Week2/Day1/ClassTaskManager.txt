@@ -1,0 +1,21 @@
+Class TaskManager
+    Attribute:
+        tasks = LinkedHashMap<Integer, String>
+        nextTaskId = 1
+    Method addTask(description):
+        tasks.put(nextTaskId, description)
+        nextTaskId++
+    Method removeTask(taskId):
+        tasks.remove(taskId)
+    Method viewTasks():
+        For each (id, desc) in tasks:
+            Print id → desc
+
+Main():
+    manager = new TaskManager()
+    manager.addTask("Check emails")
+    manager.addTask("Prepare sales report")
+    manager.addTask("Call client")
+
+    manager.removeTask(2)   
+    manager.viewTasks()    

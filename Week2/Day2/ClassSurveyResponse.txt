@@ -1,0 +1,25 @@
+Class SurveyResponse
+    Attributes:
+        restaurantName
+        rating
+
+Function generateReport(responses):
+    result = responses.stream()
+        .collect(groupingBy(response.restaurantName,
+                            averaging(response.rating)))
+
+    Print each restaurantName → averageRating
+
+    maxRestaurant = restaurant with highest average
+    minRestaurant = restaurant with lowest average
+
+    Print "Best restaurant:", maxRestaurant
+    Print "Needs improvement:", minRestaurant
+
+Main():
+    responses = [
+        (PizzaHut, 4), (PizzaHut, 5),
+        (KFC, 3), (KFC, 4),
+        (Subway, 5), (Subway, 4), (Subway, 5)
+    ]
+    generateReport(responses)

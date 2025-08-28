@@ -1,0 +1,15 @@
+Function wordCounter(paragraph):
+    words = split(paragraph by spaces)
+    wordMap = new Map<String, Integer>
+    For each word in words:
+        word = lowercase(removePunctuation(word))
+        If word not in wordMap:
+            wordMap[word] = 1
+        Else:
+            wordMap[word]++
+    Sort wordMap by values (descending)
+    Print each word → count
+
+Main():
+    text = "Sports bring people together. Sports inspire teamwork. Sports create leaders."
+    wordCounter(text)

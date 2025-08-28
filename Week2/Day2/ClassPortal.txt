@@ -1,0 +1,31 @@
+Class User
+    Attributes:
+        username
+        password
+    Method login():
+        Print "Generic login"
+
+Class Student extends User
+    Attributes:
+        enrolledCourses
+    Method login():
+        If username & password valid AND student enrolled in at least one course:
+            Print "Login successful. Show available exams"
+        Else:
+            Print "Student login failed"
+
+Class Admin extends User
+    Attributes:
+        hasAdminPrivileges
+    Method login():
+        If username & password valid AND hasAdminPrivileges == true:
+            Print "Login successful. Show exam management tools"
+        Else:
+            Print "Admin login failed"
+
+Main():
+    student = new Student("john123", "pass123", ["Math"])
+    student.login()
+
+    admin = new Admin("admin01", "adminpass", true)
+    admin.login()

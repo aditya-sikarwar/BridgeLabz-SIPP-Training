@@ -1,0 +1,31 @@
+Class AttendanceSystem
+    Attribute:
+        attendance[30][30]   
+    Method markAttendance(studentId, day, status):
+        attendance[studentId][day] = status
+    Method dailySummary(day):
+        count = 0
+        For each student in attendance:
+            If attendance[student][day] == 1:
+                count++
+        Print count students present on Day X
+    Method monthlySummary(studentId):
+        total = 0
+        For each day in attendance[studentId]:
+            If value == 1:
+                total++
+        Print "Student", studentId, "attended", total, "days"
+    Method defaulterList():
+        For each student:
+            presentDays = count of 1s in row
+            If presentDays < 22:
+                Print "Student", studentId, "is defaulter"
+
+Main():
+    system = new AttendanceSystem()
+    system.markAttendance(1, 1, 1)   
+    system.markAttendance(3, 1, 0)   
+
+    system.dailySummary(10)
+    system.monthlySummary(5)
+    system.defaulterList()
