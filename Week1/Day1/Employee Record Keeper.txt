@@ -1,0 +1,25 @@
+2 Employee Record Keeper
+
+CLASS Employee
+    ATTRIBUTES: name, department
+    CONSTRUCTOR(name, department)
+        set name and department
+    METHOD getName()
+        return name
+    METHOD getDepartment()
+        return department
+
+BEGIN
+    CREATE ArrayList employees
+
+    ADD new Employee("Raj", "IT")
+    ADD new Employee("Simran", "HR")
+    ADD new Employee("Amit", "IT")
+    ADD new Employee("Neha", "Finance")
+
+    itEmployees = filter employees where department == "IT"
+
+    PRINT "Employees in IT Department:"
+    FOR each employee in itEmployees
+        PRINT employee.name
+END

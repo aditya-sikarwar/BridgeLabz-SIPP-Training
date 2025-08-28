@@ -1,0 +1,17 @@
+Initialize Queue NormalQueue
+Initialize Queue EmergencyQueue
+
+Function addCustomer(name, type):
+    if type == "EMERGENCY":
+        Enqueue name into EmergencyQueue
+    else:
+        Enqueue name into NormalQueue
+
+Function serveCustomer():
+    if EmergencyQueue is not empty:
+        customer = Dequeue from EmergencyQueue
+    else if NormalQueue is not empty:
+        customer = Dequeue from NormalQueue
+    else:
+        Print "No customers waiting"
+    return customer

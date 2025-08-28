@@ -1,0 +1,39 @@
+
+
+1. Define DiagnosisStrategy
+   - Method: diagnose(symptoms)
+
+2. Implement Strategies
+   a. RuleBasedDiagnosis
+      - If symptoms contain [fever, cough, fatigue] → Suggest [Flu, COVID-19]
+      - Else → Suggest [Unknown Disease]
+
+   b. AIBasedDiagnosis
+      - If symptoms contain [headache, dizziness, nausea] → Suggest [Migraine, Vertigo]
+      - Else → Suggest [Unknown Disease]
+
+   c. ProbabilityBasedDiagnosis
+      - If number of symptoms > 2 → Suggest [Likely Infection, Need Further Tests]
+      - Else → Suggest [Low Probability Disease]
+
+   d. GeneticPatternDiagnosis (future addition)
+      - If genetic markers/family history detected → Suggest [Genetic Disorder Risk]
+
+3. DiagnosisContext
+   - Holds a reference to DiagnosisStrategy
+   - Method: setStrategy(strategy) → switch algorithm at runtime
+   - Method: executeDiagnosis(symptoms) → call diagnose(symptoms) of current strategy
+
+4. Demonstration
+   Case 1: Patient in General Medicine with [fever, cough, fatigue]
+           Strategy = RuleBasedDiagnosis
+           Output = [Flu, COVID-19]
+
+   Case 2: Patient in Neurology with [headache, dizziness, nausea]
+           Strategy = AIBasedDiagnosis
+           Output = [Migraine, Vertigo]
+
+   Case 3: Future Addition → GeneticPatternDiagnosis
+           Symptoms = [weakness, family-history]
+           Strategy = GeneticPatternDiagnosis
+           Output = [Genetic Disorder Risk]

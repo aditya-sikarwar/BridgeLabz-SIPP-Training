@@ -1,0 +1,30 @@
+Class UPI
+    attribute upiId
+
+Class Card
+    attribute cardNumber
+
+Class NetBanking
+    attribute accountId
+Class Transaction<T>
+    attribute paymentMode of type T
+    attribute amount
+    constructor(paymentMode, amount)
+
+    Function processTransaction()
+        print "Processing transaction with mode: " + paymentMode
+        print "Amount: " + amount
+
+Main
+    upiPayment = new UPI("user@upi")
+    cardPayment = new Card("1234-5678-9012")
+    netBankingPayment = new NetBanking("AC98765")
+
+    txn1 = new Transaction<UPI>(upiPayment, 500)
+    txn1.processTransaction()
+
+    txn2 = new Transaction<Card>(cardPayment, 2000)
+    txn2.processTransaction()
+
+    txn3 = new Transaction<NetBanking>(netBankingPayment, 10000)
+    txn3.processTransaction()

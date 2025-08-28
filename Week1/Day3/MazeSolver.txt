@@ -1,0 +1,44 @@
+CLASS MazeSolver
+    ATTRIBUTES: maze, solution, rows, cols
+
+    CONSTRUCTOR(maze, rows, cols)
+        set this.maze = maze
+        set this.rows = rows
+        set this.cols = cols
+        create solution matrix of same size initialized with 0
+
+    METHOD solve(x, y)
+        IF x,y is the destination cell
+            mark solution[x][y] = 1
+            RETURN true
+
+        IF x,y is within maze AND maze[x][y] is path AND solution[x][y] not visited
+            mark solution[x][y] = 1
+
+            IF solve(x, y+1) is true
+                RETURN true
+
+            IF solve(x+1, y) is true
+                RETURN true
+
+            IF solve(x, y-1) is true
+                RETURN true
+
+            IF solve(x-1, y) is true
+                RETURN true
+            mark solution[x][y] = 0
+            RETURN false
+
+        RETURN false
+
+    METHOD start()
+        IF solve(0, 0) is true
+            PRINT "Path found"
+            PRINT solution matrix
+        ELSE
+            PRINT "No path exists"
+
+MAIN
+    DEFINE maze as 2D grid (1 = path, 0 = wall)
+    CREATE solver = new MazeSolver(maze, rows, cols)
+    solver.start()

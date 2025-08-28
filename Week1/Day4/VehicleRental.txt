@@ -1,0 +1,57 @@
+Abstract Class Vehicle
+    attribute vehicleId
+    attribute brand
+    constructor(vehicleId, brand)
+
+    Abstract Function getDetails()
+
+Interface Rentable
+    Function rent(days)
+
+Class Car extends Vehicle implements Rentable
+    Function getDetails()
+        print "Car: " + brand + ", ID: " + vehicleId
+
+    Function rent(days)
+        cost = days * 1000
+        print "Car rented for " + days + " days. Cost: ₹" + cost
+
+Class Bike extends Vehicle implements Rentable
+    Function getDetails()
+        print "Bike: " + brand + ", ID: " + vehicleId
+
+    Function rent(days)
+        cost = days * 300
+        print "Bike rented for " + days + " days. Cost: ₹" + cost
+
+Class Truck extends Vehicle implements Rentable
+    Function getDetails()
+        print "Truck: " + brand + ", ID: " + vehicleId
+
+    Function rent(days)
+        cost = days * 2000
+        print "Truck rented for " + days + " days. Cost: ₹" + cost
+
+Class VehicleFactory
+    Static Function createVehicle(type, id, brand) -> Vehicle
+        if type == "Car"
+            return new Car(id, brand)
+        else if type == "Bike"
+            return new Bike(id, brand)
+        else if type == "Truck"
+            return new Truck(id, brand)
+        else
+            return null
+
+Main
+    vehicle1 = VehicleFactory.createVehicle("Car", "C123", "Toyota")
+    vehicle1.getDetails()
+    vehicle1.rent(5)
+
+    vehicle2 = VehicleFactory.createVehicle("Bike", "B456", "Yamaha")
+    vehicle2.getDetails()
+    vehicle2.rent(3)
+
+    vehicle3 = VehicleFactory.createVehicle("Truck", "T789", "Tata")
+    vehicle3.getDetails()
+    vehicle3.rent(2)

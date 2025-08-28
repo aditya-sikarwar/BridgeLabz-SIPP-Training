@@ -1,0 +1,55 @@
+Class Zone
+    attribute zoneName
+    constructor(zoneName)
+
+Class Reading
+    attribute value   
+    constructor(value)
+
+Main
+    
+    energyData = new Map<Zone, Map<Day, List<Reading>>>()
+
+        zoneA = new Zone("Zone-A")
+    zoneB = new Zone("Zone-B")
+
+    day1 = "2025-08-01"
+
+    readingsA_day1 = new List<Reading>()
+    readingsA_day1.add(new Reading(120))
+    readingsA_day1.add(new Reading(90))
+    readingsA_day1.add(new Reading(200))
+    readingsA_day1.add(new Reading(150))
+
+    readingsB_day1 = new List<Reading>()
+    readingsB_day1.add(new Reading(300))
+    readingsB_day1.add(new Reading(350))
+    readingsB_day1.add(new Reading(250))
+
+    zoneAMap = new Map<Day, List<Reading>>()
+    zoneAMap.put(day1, readingsA_day1)
+
+    zoneBMap = new Map<Day, List<Reading>>()
+    zoneBMap.put(day1, readingsB_day1)
+
+    energyData.put(zoneA, zoneAMap)
+    energyData.put(zoneB, zoneBMap)
+
+
+        for each (zoneEntry in energyData)
+        zone = zoneEntry.key
+        dayMap = zoneEntry.value
+
+        for each (dayEntry in dayMap)
+            day = dayEntry.key
+            readings = dayEntry.value
+
+                        peakValue = readings.stream()
+                           .map(r -> r.value)
+                           .max()
+
+            print "Zone: " + zone.zoneName
+            print "Day: " + day
+            print "Peak Load: " + peakValue + " kW"
+            print "-----------------------------"
+

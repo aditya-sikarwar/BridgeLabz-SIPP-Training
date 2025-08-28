@@ -1,0 +1,19 @@
+Class Item
+    attribute name
+    attribute price
+    constructor(name, price)
+
+Function calculateTotalPrice<T extends Item>(items: List<T>) -> double
+    total = 0
+    for each item in items
+        total = total + item.price
+    return total
+
+Main
+    cart = new List<Item>()
+    cart.add(new Item("Shoes", 1200))
+    cart.add(new Item("Bag", 800))
+    cart.add(new Item("Watch", 1500))
+
+    totalPrice = calculateTotalPrice(cart)
+    print "Total Cart Price: " + totalPrice

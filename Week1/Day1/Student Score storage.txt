@@ -1,0 +1,13 @@
+1 Student Score storage
+
+BEGIN
+    CREATE HashMap scores<String, Integer>
+    INSERT ("Aman", 85)
+    INSERT ("Riya", 92)
+    INSERT ("Karan", 76)
+    INSERT ("Meena", 95)
+
+    topScorer = find entry with maximum value from scores
+
+    PRINT "Highest Scorer: " + topScorer.key + " with " + topScorer.value + " marks"
+END

@@ -1,0 +1,31 @@
+Class Employee
+    attribute name
+    attribute department
+    attribute rating   
+    attribute baseSalary
+    constructor(name, department, rating, baseSalary)
+
+Main
+        employees = new List<Employee>()
+    employees.add(new Employee("Alice", "IT", 5, 100000))
+    employees.add(new Employee("Bob", "IT", 3, 80000))
+    employees.add(new Employee("Charlie", "IT", 2, 60000))
+    employees.add(new Employee("David", "Finance", 4, 90000))
+    employees.add(new Employee("Eva", "Finance", 5, 110000))
+
+        groupedByDept = employees.stream()
+        .collect(groupingBy(emp -> emp.department))
+
+       for each department, empList in groupedByDept
+        totalDeptSalary = sum(emp.baseSalary for emp in empList)
+        bonusPool = totalDeptSalary * 0.10   
+
+                totalRating = sum(emp.rating for emp in empList)
+
+                for each emp in empList
+            sharePercentage = emp.rating / totalRating
+            empBonus = bonusPool * sharePercentage
+            print "Dept: " + department
+            print emp.name + " gets bonus: ₹" + empBonus
+
+        print "-------------------------"

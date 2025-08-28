@@ -1,0 +1,52 @@
+CLASS Server
+    ATTRIBUTE: name
+    CONSTRUCTOR(name)
+        set this.name = name
+
+CLASS LoadBalancer
+    ATTRIBUTE: queueOfServers  
+    METHOD addServer(server)
+        enqueue server into queueOfServers
+        PRINT server.name + " added to load balancer"
+
+    METHOD removeServer(serverName)
+        tempQueue = empty queue
+        WHILE queueOfServers is not empty
+            server = dequeue from queueOfServers
+            IF server.name != serverName
+                enqueue server into tempQueue
+        queueOfServers = tempQueue
+        PRINT serverName + " removed from load balancer"
+
+    METHOD assignRequest(requestId)
+        IF queueOfServers is empty
+            PRINT "No servers available for request " + requestId
+            RETURN
+        server = dequeue from queueOfServers
+        PRINT "Request " + requestId + " → " + server.name
+        enqueue server back into queueOfServers   
+
+    METHOD processRequests(totalRequests)
+        FOR i from 1 to totalRequests
+            assignRequest("R" + i)
+
+MAIN
+    CREATE balancer = new LoadBalancer
+
+    
+    balancer.addServer(Server("S1"))
+    balancer.addServer(Server("S2"))
+    balancer.addServer(Server("S3"))
+
+    
+    balancer.processRequests(3)
+    
+        balancer.addServer(Server("S4"))
+
+   
+    balancer.processRequests(3)
+    
+       balancer.removeServer("S2")
+
+       balancer.processRequests(4)
+    

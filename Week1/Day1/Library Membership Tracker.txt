@@ -1,0 +1,13 @@
+2 Library Membership Tracker
+
+class Member
+	attributes: name,id,membershipDate
+	constructor(name,id,membershipDate)
+	   set values
+	method checkValidity()
+	   get current data
+	   calculate difference in months
+	   if difference<12
+		print "Membership valid"
+	   else
+		print "Membership expired"

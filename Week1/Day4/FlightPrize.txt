@@ -1,0 +1,54 @@
+CLASS Flight
+    ATTRIBUTES: flightNo, price, duration
+    CONSTRUCTOR(flightNo, price, duration)
+        set this.flightNo = flightNo
+        set this.price = price
+        set this.duration = duration
+
+CLASS FlightAnalyzer
+    ATTRIBUTE: flights       METHOD addFlight(flight)
+        add flight to flights list
+
+    METHOD compare(flight1, flight2)
+        IF flight1.price < flight2.price
+            RETURN true
+        ELSE IF flight1.price = flight2.price AND flight1.duration < flight2.duration
+            RETURN true
+        ELSE
+            RETURN false
+
+    METHOD mergeSort(list)
+        IF list has 1 or fewer elements
+            RETURN list
+
+        mid = length(list) / 2
+        left = mergeSort(first half of list)
+        right = mergeSort(second half of list)
+
+        RETURN merge(left, right)
+
+    METHOD merge(left, right)
+        Initialize empty result list
+        WHILE left and right are not empty
+            IF compare(left[0], right[0]) is true
+                add left[0] to result
+                remove left[0] from left
+            ELSE
+                add right[0] to result
+                remove right[0] from right
+        ADD remaining elements of left and right to result
+        RETURN result
+
+    METHOD sortFlights()
+        flights = mergeSort(flights)
+        RETURN flights
+
+MAIN
+    CREATE analyzer = new FlightAnalyzer
+    analyzer.addFlight(Flight("AI101", 5000, 180))
+    analyzer.addFlight(Flight("BA202", 4500, 200))
+    analyzer.addFlight(Flight("UA303", 5000, 150))
+
+    sortedFlights = analyzer.sortFlights()
+    FOR each flight in sortedFlights
+        PRINT flight.flightNo + " Price: " + flight.price + " Duration: " + flight.duration

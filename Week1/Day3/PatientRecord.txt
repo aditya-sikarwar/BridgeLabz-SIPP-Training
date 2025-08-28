@@ -1,0 +1,36 @@
+CLASS Patient
+    ATTRIBUTES: id, name, age, disease
+    CONSTRUCTOR(id, name, age, disease)
+        set this.id = id
+        set this.name = name
+        set this.age = age
+        set this.disease = disease
+
+CLASS PatientRecords
+    ATTRIBUTE: hashMap  
+    METHOD addPatient(patient)
+        hashMap[patient.id] = patient
+
+    METHOD getPatient(id)
+        RETURN hashMap[id]
+
+    METHOD updatePatient(id, newName, newAge, newDisease)
+        IF id exists in hashMap
+            patient = hashMap[id]
+            patient.name = newName
+            patient.age = newAge
+            patient.disease = newDisease
+
+    METHOD deletePatient(id)
+        IF id exists in hashMap
+            remove id from hashMap
+
+MAIN
+    CREATE records = new PatientRecords
+    records.addPatient(Patient(101, "Alice", 25, "Flu"))
+    records.addPatient(Patient(102, "Bob", 40, "Diabetes"))
+
+    PRINT records.getPatient(101).name   
+    records.updatePatient(101, "Alice Smith", 26, "Fever")
+    PRINT records.getPatient(101).name   
+    records.deletePatient(102)

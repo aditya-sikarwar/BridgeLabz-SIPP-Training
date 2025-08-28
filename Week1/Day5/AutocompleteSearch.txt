@@ -1,0 +1,65 @@
+CLASS TrieNode
+    ATTRIBUTES: children, isEndOfWord, popularity
+    CONSTRUCTOR()
+        children = empty map (char → TrieNode)
+        isEndOfWord = false
+        popularity = 0   // higher value means more popular
+
+CLASS Trie
+    ATTRIBUTE: root
+
+    CONSTRUCTOR()
+        root = new TrieNode
+
+    METHOD insert(word, popularity)
+        current = root
+        FOR each character c in word
+            IF c not in current.children
+                current.children[c] = new TrieNode
+            current = current.children[c]
+        current.isEndOfWord = true
+        current.popularity = popularity
+
+    METHOD searchPrefix(prefix)
+        current = root
+        FOR each character c in prefix
+            IF c not in current.children
+                RETURN null
+            current = current.children[c]
+        RETURN current
+
+    METHOD collectWords(node, prefix, suggestions)
+        IF node.isEndOfWord
+            add (prefix, node.popularity) to suggestions
+        FOR each child character c in node.children
+            collectWords(node.children[c], prefix + c, suggestions)
+
+    METHOD getSuggestions(prefix, N)
+        startNode = searchPrefix(prefix)
+        IF startNode = null
+            RETURN empty list
+        suggestions = empty list
+        collectWords(startNode, prefix, suggestions)
+        sort suggestions by popularity (highest first)
+        RETURN first N suggestions
+
+MAIN
+    CREATE trie = new Trie
+
+    // Step 1: Insert keywords
+    trie.insert("pizza hut", 50)
+    trie.insert("pizza point", 30)
+    trie.insert("pita bread", 70)
+    trie.insert("pizzeria", 20)
+
+    // Step 2: User types "pi"
+    results = trie.getSuggestions("pi", 3)
+    PRINT results
+    // Output (sorted by popularity): "pita bread", "pizza hut", "pizza point"
+
+    // Step 3: Add new restaurant dynamically
+    trie.insert("pineapple cafe", 40)
+
+    results2 = trie.getSuggestions("pi", 3)
+    PRINT results2
+    // Output: "pita bread", "pizza hut", "pineapple cafe"

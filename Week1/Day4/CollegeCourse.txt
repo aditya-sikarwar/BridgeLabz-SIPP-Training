@@ -1,0 +1,31 @@
+Class Course
+    attribute courseName
+    constructor(courseName)
+
+Class Student
+    attribute studentName
+    constructor(studentName)
+
+Main
+    
+    courseMap = new Map<Course, List<Student>>()
+
+    course1 = new Course("Data Structures")
+    course2 = new Course("Databases")
+
+    studentsForCourse1 = new List<Student>()
+    studentsForCourse1.add(new Student("Alice"))
+    studentsForCourse1.add(new Student("Bob"))
+
+    studentsForCourse2 = new List<Student>()
+    studentsForCourse2.add(new Student("Charlie"))
+    studentsForCourse2.add(new Student("David"))
+
+    courseMap.put(course1, studentsForCourse1)
+    courseMap.put(course2, studentsForCourse2)
+
+        for each entry in courseMap
+        print "Course: " + entry.key.courseName
+        print "Students: "
+        for each student in entry.value
+            print student.studentName

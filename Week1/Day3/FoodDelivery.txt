@@ -1,0 +1,36 @@
+Class Customer
+    attribute name
+    attribute address
+    constructor(name, address)
+
+Class Restaurant
+    attribute name
+    attribute location
+    constructor(name, location)
+
+Class DeliveryBoy
+    attribute name
+    attribute phone
+    constructor(name, phone)
+
+Class Order
+    attribute customer
+    attribute restaurant
+    attribute deliveryBoy
+    attribute orderDetails
+
+    constructor(customer, restaurant, deliveryBoy, orderDetails)
+
+    Function printOrderSummary()
+        print "Order Details: " + orderDetails
+        print "Customer: " + customer.name + ", Address: " + customer.address
+        print "Restaurant: " + restaurant.name + ", Location: " + restaurant.location
+        print "Delivery Boy: " + deliveryBoy.name + ", Phone: " + deliveryBoy.phone
+
+Main
+    cust = new Customer("Alice", "Street 10, City")
+    rest = new Restaurant("Foodies Hub", "Downtown")
+    boy  = new DeliveryBoy("Bob", "9876543210")
+
+    order = new Order(cust, rest, boy, "2x Pizza, 1x Coke")
+    order.printOrderSummary()

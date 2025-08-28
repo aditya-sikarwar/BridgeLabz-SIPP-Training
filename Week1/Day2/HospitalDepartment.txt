@@ -1,0 +1,29 @@
+Class Doctor
+    attribute name
+    attribute specialization
+    constructor(name, specialization)
+
+Main
+    hospitalDepartments = new Map<String, List<Doctor>>()
+
+    cardiology = new List<Doctor>()
+    cardiology.add(new Doctor("Dr. A", "Cardiologist"))
+    cardiology.add(new Doctor("Dr. B", "Heart Surgeon"))
+
+    neurology = new List<Doctor>()
+    neurology.add(new Doctor("Dr. C", "Neurologist"))
+    neurology.add(new Doctor("Dr. D", "Brain Surgeon"))
+
+    hospitalDepartments.put("Cardiology", cardiology)
+    hospitalDepartments.put("Neurology", neurology)
+
+      Function filterDoctorsBySpecialization(map, specialization) -> List<Doctor>
+        result = new List<Doctor>()
+        for each department in map
+            for each doctor in department.value
+                if doctor.specialization equals specialization
+                    result.add(doctor)
+        return result
+
+        filtered = filterDoctorsBySpecialization(hospitalDepartments, "Neurologist")
+    print "Doctors with specialization Neurologist: " + filtered

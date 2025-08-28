@@ -1,0 +1,53 @@
+Restaurant POS Billing System - Pseudocode
+
+1. Define interface TaxCalculator
+   - Method: calculateTax(price)
+
+2. Implement different Tax Calculators
+   - FoodTax: return 5% of price
+   - BeverageTax: return 12% of price
+   - ImportedTax: return 5% of price + customs duty
+   - LuxuryTax (future): return 18% of price
+
+3. Define interface DiscountPolicy
+   - Method: applyDiscount(totalAmount)
+
+4. Implement different Discount Policies
+   - NoDiscount: return totalAmount
+   - FlatDiscount: return totalAmount - 100
+   - PercentageDiscount: return totalAmount - (10% of totalAmount)
+   - BuyOneGetOne (future): calculate free items, adjust total
+
+5. Define class Item
+   - Attributes: name, basePrice, taxCalculator
+   - Method getPriceWithTax():
+       return basePrice + taxCalculator.calculateTax(basePrice)
+
+6. Define class Bill
+   - Attributes: list of Items, discountPolicy
+   - Method calculateTotal():
+       total = 0
+       For each item in items:
+           total += item.getPriceWithTax()
+       total = discountPolicy.applyDiscount(total)
+       return total
+
+7. Example Scenarios
+
+   Scenario 1:
+   - Items:
+       Paneer Tikka with FoodTax
+       Coke with BeverageTax
+       Imported Cheese with ImportedTax
+   - DiscountPolicy = PercentageDiscount (10%)
+   - Final bill = total price with taxes - 10%
+
+   Scenario 2:
+   - New discount BuyOneGetOne added
+   - Items: Coke, Coke
+   - Bill applies BuyOneGetOne automatically without code changes
+
+   Scenario 3:
+   - Festival time, new LuxuryTax introduced
+   - Premium Item uses LuxuryTax
+   - No change in main billing code

@@ -1,0 +1,48 @@
+Interface Searchable
+    Function search(keyword)
+
+Interface Printable
+    Function print()
+
+Class PatientReport implements Searchable, Printable
+    attribute patientName
+    attribute diagnosis
+    constructor(patientName, diagnosis)
+
+    Function search(keyword)
+        if keyword in patientName OR keyword in diagnosis
+            return true
+        else return false
+
+    Function print()
+        print "Patient Report: " + patientName + ", Diagnosis: " + diagnosis
+
+Class BillingReport implements Searchable, Printable
+    attribute patientName
+    attribute amount
+    constructor(patientName, amount)
+
+    Function search(keyword)
+        if keyword in patientName
+            return true
+        else return false
+
+    Function print()
+        print "Billing Report: " + patientName + ", Amount: " + amount
+
+Main
+    reports = new List<Printable>()
+
+    reports.add(new PatientReport("Alice", "Fever"))
+    reports.add(new PatientReport("Bob", "Diabetes"))
+    reports.add(new BillingReport("Alice", 5000))
+
+    
+    for each report in reports
+        report.print()
+
+ 
+    print "Search Results for 'Alice':"
+    for each report in reports
+        if report implements Searchable AND report.search("Alice") == true
+            report.print()

@@ -1,0 +1,35 @@
+1 Pet Adoption App
+
+class Pet
+    ATTRIBUTES: name, age
+    CONSTRUCTOR(name, age)
+        set name and age
+    METHOD displayInfo()
+        print name and age
+
+class Dog EXTENDS Pet
+    ATTRIBUTE: breed
+    CONSTRUCTOR(name, age, breed)
+        call Pet constructor
+        set breed
+    OVERRIDE displayInfo()
+        call super.displayInfo()
+        print breed
+
+class Cat EXTENDS Pet
+    ATTRIBUTE: color
+    CONSTRUCTOR(name, age, color)
+        call Pet constructor
+        set color
+    OVERRIDE displayInfo()
+        call super.displayInfo()
+        print color
+
+class Bird EXTENDS Pet
+    ATTRIBUTE: canFly
+    CONSTRUCTOR(name, age, canFly)
+        call Pet constructor
+        set canFly
+    OVERRIDE displayInfo()
+        call super.displayInfo()
+        print canFly

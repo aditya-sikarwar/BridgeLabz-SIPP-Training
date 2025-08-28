@@ -1,0 +1,45 @@
+CLASS CityZone
+    ATTRIBUTES: id, riskScore
+
+CLASS CrimeGraph
+    ATTRIBUTES: adjacencyList   
+                riskData        
+
+    METHOD addZone(zoneId, riskScore)
+        riskData[zoneId] = riskScore
+        adjacencyList[zoneId] = empty list
+
+    METHOD addConnection(zone1, zone2)
+        add zone2 to adjacencyList[zone1]
+        add zone1 to adjacencyList[zone2]
+
+    METHOD dfs(zoneId, visited, highRiskZones, threshold)
+        mark zoneId as visited
+        IF riskData[zoneId] >= threshold
+            add zoneId to highRiskZones
+
+        FOR each neighbor in adjacencyList[zoneId]
+            IF neighbor not visited
+                dfs(neighbor, visited, highRiskZones, threshold)
+
+    METHOD findHighRiskZones(threshold)
+        Initialize visited set
+        Initialize highRiskZones list
+        FOR each zoneId in adjacencyList
+            IF zoneId not visited
+                dfs(zoneId, visited, highRiskZones, threshold)
+        RETURN highRiskZones
+
+MAIN
+    CREATE city = new CrimeGraph
+    city.addZone("A", 70)
+    city.addZone("B", 40)
+    city.addZone("C", 90)
+    city.addZone("D", 20)
+
+    city.addConnection("A", "B")
+    city.addConnection("B", "C")
+    city.addConnection("C", "D")
+
+    highRisk = city.findHighRiskZones(threshold = 60)
+    PRINT "High risk zones:", highRisk

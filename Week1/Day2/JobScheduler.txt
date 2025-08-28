@@ -1,0 +1,26 @@
+2 Job Scheduler
+
+CLASS Job
+    ATTRIBUTES: name, deadline, processingTime
+    CONSTRUCTOR(name, deadline, processingTime)
+
+CLASS JobScheduler
+    ATTRIBUTE: priorityQueue
+
+    METHOD addJob(job)
+        insert job into priorityQueue
+        priority is smaller deadline first
+        if same deadline, smaller processingTime first
+
+    METHOD processJobs()
+        WHILE priorityQueue not empty
+            job = remove highest priority job
+            PRINT "Processing job: " + job.name
+
+MAIN
+    CREATE scheduler = new JobScheduler
+    scheduler.addJob(Job("A", 3, 4))
+    scheduler.addJob(Job("B", 1, 2))
+    scheduler.addJob(Job("C", 2, 1))
+
+    scheduler.processJobs()

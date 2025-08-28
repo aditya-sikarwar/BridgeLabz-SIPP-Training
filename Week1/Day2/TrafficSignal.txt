@@ -1,0 +1,28 @@
+Enum TrafficLight
+    RED
+    YELLOW
+    GREEN
+
+Class TrafficSignal
+    attribute currentLight
+
+    constructor()
+        currentLight = RED   // initial state
+
+    Function switchLight()
+        if currentLight == RED
+            currentLight = GREEN
+        else if currentLight == GREEN
+            currentLight = YELLOW
+        else if currentLight == YELLOW
+            currentLight = RED
+
+    Function simulate(intervals)
+        for i from 1 to intervals
+            print "Current Light: " + currentLight
+            wait for 5 seconds   // time interval
+            switchLight()
+
+Main
+    signal = new TrafficSignal()
+    signal.simulate(6)   // run simulation for 6 intervals

@@ -1,0 +1,18 @@
+Initialize stack UndoStack
+
+Function typeText
+    Append text to Document
+    Push ("ADD", text) onto UndoStack
+
+Function deleteText
+    deletedText = last n characters from Document
+    Remove last n characters from Document
+    Push ("DELETE", deletedText) onto UndoStack
+
+Function undo():
+    if UndoStack is not empty:
+        operation, value = Pop from UndoStack
+        if operation == "ADD":
+            Remove last lengthvalue characters from Document
+        else if operation == "DELETE":
+            Append value back to Document

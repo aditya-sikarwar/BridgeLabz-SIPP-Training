@@ -1,0 +1,38 @@
+Class Account
+    attribute accountNumber
+    attribute balance
+    constructor(accountNumber, balance)
+
+    Function withdraw(amount)
+        if amount <= balance
+            balance = balance - amount
+            print "Withdrawal successful. Remaining balance: " + balance
+        else
+            print "Insufficient balance."
+
+Class SavingAccount extends Account
+    attribute minBalance = 1000
+
+    Function withdraw(amount)
+        if (balance - amount) >= minBalance
+            balance = balance - amount
+            print "Saving Account Withdrawal successful. Remaining balance: " + balance
+        else
+            print "Withdrawal denied. Minimum balance requirement not met."
+
+Class CurrentAccount extends Account
+    attribute overdraftLimit = 5000
+
+    Function withdraw(amount)
+        if amount <= (balance + overdraftLimit)
+            balance = balance - amount
+            print "Current Account Withdrawal successful. Remaining balance: " + balance
+        else
+            print "Withdrawal denied. Overdraft limit exceeded."
+
+Main
+    acc1 = new SavingAccount("S001", 5000)
+    acc1.withdraw(4500)
+
+    acc2 = new CurrentAccount("C001", 2000)
+    acc2.withdraw(6000)

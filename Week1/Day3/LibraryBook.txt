@@ -1,0 +1,21 @@
+Class Book
+    attribute title
+    attribute year
+    attribute rating
+    constructor(title, year, rating)
+
+Main
+    books = new List<Book>()
+    books.add(new Book("Book A", 2014, 4.8))
+    books.add(new Book("Book B", 2018, 4.6))
+    books.add(new Book("Book C", 2020, 4.4))
+    books.add(new Book("Book D", 2017, 4.9))
+
+        filteredBooks = books.stream()
+        .filter(book -> book.year > 2015)
+        .filter(book -> book.rating > 4.5)
+        .collect(toList())
+
+    print "Books published after 2015 with rating > 4.5:"
+    for each b in filteredBooks
+        print b.title

@@ -1,0 +1,26 @@
+1 Online Quiz Timer
+
+CLASS QuizTimer
+    ATTRIBUTE: circularArray[], size, front, rear
+
+    CONSTRUCTOR(size)
+        create circularArray of given size
+        set front = rear = -1
+
+    METHOD addTimeSlot(time)
+        IF queue full
+            PRINT "No more slots can be added"
+        ELSE
+            IF front == -1
+                set front = 0
+            rear = (rear + 1) % size
+            circularArray[rear] = time
+
+    METHOD startQuiz()
+        FOR each timeSlot in circularArray
+            PRINT "Timer started for question with timeSlot seconds"
+            WHILE timeSlot > 0
+                DECREASE timeSlot
+                IF timeSlot <= 5
+                    PRINT "Warning: Time is running out!"
+            PRINT "Time over for this question"

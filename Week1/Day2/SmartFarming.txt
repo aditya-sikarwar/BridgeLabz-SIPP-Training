@@ -1,0 +1,37 @@
+Abstract Class Crop
+    attribute name
+    constructor(name)
+
+    Abstract Function waterRequirement()
+    Abstract Function harvest()
+
+Class Rice extends Crop
+    constructor(name)
+        super(name)
+
+    Function waterRequirement()
+        print "Rice requires 1200 liters of water per acre."
+
+    Function harvest()
+        print "Rice is harvested in 150 days."
+
+Class Wheat extends Crop
+    constructor(name)
+        super(name)
+
+    Function waterRequirement()
+        print "Wheat requires 700 liters of water per acre."
+
+    Function harvest()
+        print "Wheat is harvested in 120 days."
+
+Main
+    crops = new List<Crop>()
+    crops.add(new Rice("Rice-Crop"))
+    crops.add(new Wheat("Wheat-Crop"))
+
+    for each crop in crops
+        print "Crop: " + crop.name
+        crop.waterRequirement()
+        crop.harvest()
+        print "------------------"
